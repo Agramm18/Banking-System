@@ -6,6 +6,10 @@
 class MainLogic {
     public:
 
+    //Global class variables
+    bool validChoice = false;
+    bool startSoftware = false;
+    
     void StartingLogic(); //Define Starting Logic
     void MainPorgrammLogic(); //Define Main Logic
     void QuitLogic(); //Define Quitting Logic
