@@ -15,9 +15,8 @@ class MoneyAmmount {
 //====Main Menu====//
 class MainMenue {
     public:
-    int MenueChoice;
 
-    MainMenue(int menuChoice) : MenueChoice(menuChoice) {}
+    int menuChoice = 0;
 
     //Display main menu from software
     void showMenu() {
@@ -45,21 +44,30 @@ class MainMenue {
     cout << "13: Exit the Program" << endl;
 
     }
+
+    //Get Menu Choice
+    void getMenuChoice() {
+
+        try {
+            string input;
+
+            cout << "Please choose a option from the menu [1-13]: ";
+            getline (cin, input);
+
+            int userChoice = stoi(input);
+
+            if (userChoice < 1 || userChoice > 13) {
+                throw runtime_error("Invalid menu choice you can only choose options between 1 and 13 any other values will cause errors");
+            }
+
+            menuChoice = userChoice; 
+
+        } catch (runtime_error &e) {
+            cout <<"\nThere is an error in the Menu Choice"<<endl;
+            cout <<"The error is: " << e.what() <<endl;
+        }
+    }
 };
-
-//====Menu Functions===//
-
-MainMenue createUser() {
-    string user;
-    int userAge;
-    string bankingCard;
-    string IBAN;
-    string BIC;
-    int BankingPIN;
-    int expirationDate;
-
-
-}
 
 int main() {
     cout <<"\n --------Welcome to my Banking Software-------- \n" <<endl;
@@ -105,14 +113,23 @@ int main() {
     //Main Programm/Software
 
     if (startSoftware) {
+
+        MainMenue validateMenu; //Crate menu class as object
+
         bool running = true;
 
         //Start the Actuall programm
         while (running) {
             try {
+                //Show menu
+                validateMenu.showMenu();
 
+                //Validate menu Choice
+                validateMenu.getMenuChoice();
+            } catch (const exception &e) {
+                cout <<"There is an error: " <<e.what() <<endl;
             }
-        }
+        } 
     }
 
     return 0;
