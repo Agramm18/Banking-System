@@ -66,7 +66,7 @@ class MainMenue {
 
             cout <<"\nThe user have choosen field " << menuChoice <<endl;
 
-        } catch (runtime_error &e) {
+        } catch (const exception& e) {
             isChoiceValid = false;
             cout <<"\nThere is an error in the Menu Choice"<<endl;
             cout <<"The error is: " << e.what() <<endl;
@@ -186,9 +186,6 @@ int main() {
     //Main Programm/Software
 
     if (startSoftware) {
-
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
         // Starting output when the program begins
         cout << "\n";
