@@ -215,11 +215,31 @@ int main() {
 
                 //Switch through menu to get the right choice
                 validateMenu.validateMenuChoice();
-                cout <<"\nYou will now redirect to the submenu where you can validate your data \n"<<endl;
+
+                //Quit programm if choice is 13
+                if (validateMenu.menuChoice == 13) {
+                    cout << "\n";
+                    cout << "****************************************************\n";
+                    cout << "*                                                  *\n";
+                    cout << "*              THANK YOU FOR USING                 *\n";
+                    cout << "*                 AGRAMM BANK                      *\n";
+                    cout << "*                                                  *\n";
+                    cout << "****************************************************\n\n";
+
+                    cout << "We hope you enjoyed testing this C++ banking system.\n";
+                    cout << "Thank you for exploring classes, OOP and structured logic.\n";
+                    cout << "Keep learning, keep building — and see you next time!\n\n";
+
+                    cout << "Program terminated successfully.\n";
+                    cout << "Goodbye!\n\n";
+
+                    running = false;
+
+                }
 
             } catch (const exception &e) {
                 cout <<"There is an error: " <<e.what() <<endl;
-            } break;
+            }
         }
     }
 
