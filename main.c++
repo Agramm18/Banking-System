@@ -3,15 +3,6 @@
 
 using namespace std;
 
-//====Define starting ammount as class====
-class MoneyAmmount {
-    public:
-    double moneyAmmount;
-
-    MoneyAmmount(int ammount) : moneyAmmount(ammount) {}
-};
-
-
 //====Main Menu====//
 class MainMenue {
     public:
@@ -22,7 +13,8 @@ class MainMenue {
     void showMenu() {
 
     cout << "\n-------- Please select a menu option --------\n";
-
+    
+    cout <<"\n--- User Actions ---\n";
     cout << "1: Create User" << endl;
     cout << "2: Show User Information" << endl;
 
@@ -51,8 +43,12 @@ class MainMenue {
         try {
             string input;
 
-            cout << "Please choose a option from the menu [1-13]: ";
+            cout << "\nPlease choose a option from the menu [1-13]: "<<endl;
             getline (cin, input);
+
+            if (input.empty()) {
+                throw runtime_error("The field for the menu option can't be empty please enter a number between 1 and 13 to continue: ");
+            }
 
             int userChoice = stoi(input);
 
@@ -60,7 +56,9 @@ class MainMenue {
                 throw runtime_error("Invalid menu choice you can only choose options between 1 and 13 any other values will cause errors");
             }
 
-            menuChoice = userChoice; 
+            menuChoice = userChoice;
+
+            cout <<"\nThe user have choosen field " << menuChoice <<endl;
 
         } catch (runtime_error &e) {
             cout <<"\nThere is an error in the Menu Choice"<<endl;
@@ -113,10 +111,19 @@ int main() {
     //Main Programm/Software
 
     if (startSoftware) {
-        //Starting output if you are in the programm
-        cout <<"\n--------You are now in the main Programm-----------\n"<<endl;
-        cout <<"This Programm simulates a Banking System--------------";
-        cout <<"Have fun while using it i developed this programm to learn basic c++ syntax and ruels\n";
+
+        // Starting output when the program begins
+        cout << "\n";
+        cout << "****************************************************\n";
+        cout << "*                                                  *\n";
+        cout << "*               WELCOME TO AGRAMM BANK             *\n";
+        cout << "*                                                  *\n";
+        cout << "****************************************************\n\n";
+
+        cout << "A C++ training project simulating a banking system.\n";
+        cout << "This program was developed to practice basic C++ syntax,\n";
+        cout << "and to learn how classes, methods, and OOP work in C++.\n";
+        cout << "Learn. Practice. Build. Enjoy.\n\n";
 
         MainMenue validateMenu; //Crate menu class as object
 
