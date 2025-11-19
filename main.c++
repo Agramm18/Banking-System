@@ -113,6 +113,10 @@ int main() {
     //Main Programm/Software
 
     if (startSoftware) {
+        //Starting output if you are in the programm
+        cout <<"\n--------You are now in the main Programm-----------\n"<<endl;
+        cout <<"This Programm simulates a Banking System--------------";
+        cout <<"Have fun while using it i developed this programm to learn basic c++ syntax and ruels\n";
 
         MainMenue validateMenu; //Crate menu class as object
 
