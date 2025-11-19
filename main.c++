@@ -46,7 +46,7 @@ class MainMenue {
         try {
             string input;
 
-            cout << "\nPlease choose a option from the menu [1-13]: "<<endl;
+            cout << "\nPlease choose a option from the menu [1-13]: ";
             getline (cin, input);
 
             if (input.empty()) {
@@ -198,7 +198,7 @@ int main() {
         cout << "A C++ training project simulating a banking system.\n";
         cout << "This program was developed to practice basic C++ syntax,\n";
         cout << "and to learn how classes, methods, and OOP work in C++.\n";
-        cout << "Learn. Practice. Build. Enjoy.\n\n";
+        cout << "Learn. Practice. Build. Try Out & Enjoy!!.\n\n";
 
         MainMenue validateMenu; //Crate menu class as object
 
@@ -215,11 +215,12 @@ int main() {
 
                 //Switch through menu to get the right choice
                 validateMenu.validateMenuChoice();
+                cout <<"\nYou will now redirect to the submenu where you can validate your data \n"<<endl;
 
             } catch (const exception &e) {
                 cout <<"There is an error: " <<e.what() <<endl;
-            }
-        } 
+            } break;
+        }
     }
 
     return 0;
