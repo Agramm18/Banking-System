@@ -1,5 +1,6 @@
-#include "../include/menuMain/menuArchitecture.h"
+#include "menuMain/menuArchitecture.h"
 #include <iostream>
+#include <string>
 
 using namespace std;
 
