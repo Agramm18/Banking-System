@@ -1,4 +1,5 @@
 #include "menuMain/menuArchitecture.h"
+#include "programmFunctionsMain/userActionsMain.h"
 #include <iostream>
 #include <string>
 
@@ -7,28 +8,40 @@ using namespace std;
 //Display Menu Options
 void MainMenue::showMenu () {
     
-    cout << "\n-------- Please select a menu option --------\n";
-    
-    cout <<"\n--- User Actions ---\n";
-    cout << "1: Create User" << endl;
-    cout << "2: Show User Information" << endl;
+    cout << "\n================= BANKING SYSTEM MENU =================\n";
 
-    cout << "\n--- Account Actions ---\n";
-    cout << "3: Show Account Balance" << endl;
-    cout << "4: Add Money to your Account" << endl;
-    cout << "5: Withdraw Money from your Account" << endl;
-    cout << "6: Transfer Money to another Account" << endl;
-    cout << "7: Show Transaction History" << endl;
+    cout << "\n--- User Actions --------------------------------------\n";
+    cout << " 1. Create User\n";
+    cout << " 2. Select Bankcard Type\n";
 
-    cout << "\n--- Loans & Limits ---\n";
-    cout << "8: Take out a Loan" << endl;
-    cout << "9: Change Debit Limit" << endl;
-    cout << "10: Change Overdraft Limit" << endl;
+    cout << "\n--- Account Actions -----------------------------------\n";
+    cout << " 3. Add Money\n";
+    cout << " 4. Withdraw Money\n";
+    cout << " 5. Transfer Money\n";
+    cout << " 6. Add Standing Order\n";
 
-    cout << "\n--- Security & System ---\n";
-    cout << "11: Change PIN" << endl;
-    cout << "12: Close Account" << endl;
-    cout << "13: Exit the Program" << endl;
+    cout << "\n--- Loans & Limits ------------------------------------\n";
+    cout << " 7. Take out a Loan\n";
+    cout << " 8. Change Debit Limit\n";
+    cout << " 9. Change Overdraft Limit\n";
+
+    cout << "\n--- Security & System ---------------------------------\n";
+    cout << "10. Change PIN\n";
+    cout << "11. Block Card\n";
+
+    cout << "\n--- Display Information -------------------------------\n";
+    cout << "12. Display Account Details\n";
+    cout << "13. Display Security Information\n";
+    cout << "14. Display Account Balance\n";
+    cout << "15. Display Transfer Actions\n";
+    cout << "16. Display Standing Orders\n";
+    cout << "17. Display Outstanding Payments\n";
+    cout << "18. Display Your Cards\n";
+
+    cout << "\n--- Other ----------------------------------------------\n";
+    cout << "19. Exit Program\n";
+
+    cout << "\n========================================================\n";
 
 }
 
