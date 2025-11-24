@@ -50,7 +50,7 @@ void MainMenue::getMenuChoice() {
     try {
         string input;
 
-        cout << "\nPlease choose a option from the menu [1-13]: ";
+        cout << "\nPlease choose a option from the menu [1-19]: ";
         getline (cin, input);
 
         if (input.empty()) {
@@ -84,63 +84,95 @@ void MainMenue::validateMenuChoice() {
         return;
     }
 
-    //Validate choice with switch
+     //Validate choice with switch
     switch (menuChoice) {
 
+        // --- User Actions ---
         case 1:
-            cout << "You can now create a new User/Bank Account" << endl;
+            cout << "You can now create a new user / bank account..." << endl;
             break;
 
         case 2:
-            cout << "Showing user information..." << endl;
+            cout << "You can now select a bankcard type..." << endl;
             break;
 
+        // --- Account Actions ---
         case 3:
-            cout << "Displaying your account balance..." << endl;
+            cout << "You can now add money to your account..." << endl;
             break;
 
         case 4:
-            cout << "You can now add money to your bank account." << endl;
+            cout << "You can now withdraw money from your account..." << endl;
             break;
 
         case 5:
-            cout << "You can now withdraw money from your bank account." << endl;
+            cout << "You can now transfer money to another account..." << endl;
             break;
 
         case 6:
-            cout << "You can now transfer money to another account." << endl;
+            cout << "You can now add a standing order..." << endl;
             break;
 
+        // --- Loans & Limits ---
         case 7:
-            cout << "Showing your transaction history..." << endl;
+            cout << "You can now take out a loan..." << endl;
             break;
 
         case 8:
-            cout << "You can now take out a loan." << endl;
+            cout << "You can now change your debit limit..." << endl;
             break;
 
         case 9:
-            cout << "You can now change your debit limit." << endl;
+            cout << "You can now change your overdraft limit..." << endl;
             break;
 
+        // --- Security & System ---
         case 10:
-            cout << "You can now change your overdraft limit." << endl;
+            cout << "You can now change your PIN..." << endl;
             break;
 
         case 11:
-            cout << "You can now change your PIN." << endl;
+            cout << "You can now block your card..." << endl;
             break;
 
+        // --- Display Information ---
         case 12:
-            cout << "You can now close your bank account." << endl;
+            cout << "Displaying your account details..." << endl;
             break;
 
         case 13:
+            cout << "Displaying your security information..." << endl;
+            break;
+
+        case 14:
+            cout << "Displaying your account balance..." << endl;
+            break;
+
+        case 15:
+            cout << "Displaying your transfer actions..." << endl;
+            break;
+
+        case 16:
+            cout << "Displaying your standing orders..." << endl;
+            break;
+
+        case 17:
+            cout << "Displaying outstanding payments..." << endl;
+            break;
+
+        case 18:
+            cout << "Displaying your registered cards..." << endl;
+            break;
+
+        // --- Program Exit ---
+        case 19:
             cout << "Exiting the program..." << endl;
             break;
 
+        // --- Default ---
         default:
-            cout << "Unknown menu option." << endl;
+            cout << "Unknown menu option. Please select a valid number." << endl;
             break;
     }
+
 }
