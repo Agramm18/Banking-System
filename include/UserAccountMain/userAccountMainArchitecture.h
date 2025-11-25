@@ -3,16 +3,33 @@
 
 //Define the main structure how your account and card will be created
 
-class createUser {
+class generateProfile {
+    //Generate the Main Profile
     public:
 
+    void setAccountName(); //Set the profile name
+    void setProfileEmail(); //Set the Main E-Mail for the profile
+    void setProfilePhoneNumber(); //Set the Main Phone Number for the Profile
+    void setProfilePWSD(); //Set the Password for your Account
+    
+};
+
+class createUser {
+    //Generate the User Account for your Cards
+    public:
+
+    //Global Variables
+
+    string FullName;
+    int Bday;
+
     //Create the user
-    void setUserName(); //Set the name from the user
+    void setGenerallName(); //Set the name from the user
     void setBirthday(); //Set the birthday from the user
     void setCardAgeType(); //Validate if its an adult or child bank card
 
-    void setEmail(); //Sets your E-Mail Adress
-    void setPhone(); //Void sets your phone number
+    void setAccountEmail(); //Sets your E-Mail Adress
+    void setAccountPhonenumber(); //Void sets your phone number
     
     void generateUserID(); //Generates your User ID
 };

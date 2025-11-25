@@ -1,7 +1,7 @@
 //Include imports to use other files
-#include "menuMain\menuArchitecture.h"
-#include "startingLogicMain\startingLogicArchitecture.h"
-#include "programmFunctionsMain\userActionsMain.h"
+#include "menuMain/menuArchitecture.h"
+#include "startingLogicMain/startingLogicArchitecture.h"
+#include "programmFunctionsMain/userActionsMain.h"
 
 #include <iostream>
 #include <string>
