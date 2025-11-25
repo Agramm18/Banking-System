@@ -1,0 +1,138 @@
+┌────────────────────────────────────────────────────────────┐
+│                      BANKING SYSTEM                         │
+└────────────────────────────────────────────────────────────┘
+
+
+                            ┌───────────────┐
+                            │   main.cpp     │
+                            └───────┬───────┘
+                                    │  calls coreLogic()
+                                    ▼
+                         ┌─────────────────────┐
+                         │   startingLogic     │
+                         │---------------------│
+                         │ + bool validChoice  │
+                         │ + bool startSoftware│
+                         │---------------------│
+                         │ + coreLogic()       │
+                         │ + startProgramm...  │
+                         │ + mainRunningLogic() │
+                         │ + displayHelloMsg()  │
+                         │ + displayGoodByeMsg()│
+                         └──────────┬──────────┘
+                                    │ uses
+                                    ▼
+
+                   ┌────────────────────────────────────────┐
+                   │               MainMenue                │
+                   │----------------------------------------│
+                   │ + bool isChoiceValid                  │
+                   │ + int menuChoice                      │
+                   │----------------------------------------│
+                   │ + showMenu()                          │
+                   │ + getMenuChoice()                     │
+                   │ + validateMenuChoice()                │
+                   └──────────────┬─────────────────────────┘
+                                  │ triggers menu options
+                                  ▼
+
+
+           ┌──────────────────────────────────────────────────────────┐
+           │                      UserActions                          │
+           └──────────────────────────────────────────────────────────┘
+
+
+┌───────────────────────┐       ┌─────────────────────┐      ┌───────────────────────┐
+│      UserLogic        │       │   AccountActions    │      │    LoanAndLimits      │
+│-----------------------│       │---------------------│      │------------------------│
+│ + collectUserData()   │       │ + AddMoney()        │      │ + TakeOutALoan()       │
+│ + selectBankcardType()│       │ + WithdrawMoney()   │      │ + changeDebitLimit()    │
+│ + createUser()        │       │ + TransferMoney()   │      │ + changeOverdraftLimit()│
+│ + createPin()         │       │ + AddStandingOrder()│      └────────────────────────┘
+│ + createPuk()         │       └─────────────────────┘
+│ + generateIBAN()      │
+│ + generateBIC()       │                  ┌─────────────────────────┐
+│ + generateExpiration..│                  │   SecurityAndSystem     │
+└──────────────┬────────┘                  │-------------------------│
+               │                            │ + ChangePin()          │
+               │                            │ + BlockCard()          │
+               ▼                            └──────────────┬─────────┘
+     (creates user + card)                                  │
+                                                            ▼
+                                            ┌────────────────────────────────┐
+                                            │      DisplayInformation        │
+                                            │--------------------------------│
+                                            │ + DisplayAccountDetails()      │
+                                            │ + DisplaySecurityInformation() │
+                                            │ + DisplayAccountBalance()      │
+                                            │ + DisplayTransferActions()     │
+                                            │ + DisplayStandingOrders()      │
+                                            │ + DisplayOutstandingPayments() │
+                                            │ + DisplayYourCards()           │
+                                            └────────────────────────────────┘
+
+
+
+─────────────────────────────────────────────────────────────
+       USER & CARD CREATION MODULE (Aggregation)
+─────────────────────────────────────────────────────────────
+
+
+┌───────────────────────────┐       ┌─────────────────────────────┐
+│        createUser         │       │     generateBankingCard     │
+│---------------------------│       │-----------------------------│
+│ + setUserName()           │       │ + setBankName()             │
+│ + setBirthday()           │       │ + setCardType()             │
+│ + setCardAgeType()        │       │ + setCardStatus()           │
+│ + setEmail()              │       │ + generateBIC()             │
+│ + setPhone()              │       │ + generateAccountNumber()   │
+│ + generateUserID()        │       │ + generateBLZ()             │
+└──────────────┬────────────┘       │ + generateCVV()             │
+               │ uses               │ + setExpirationDate()       │
+               ▼                    │ + generateIBAN()            │
+                                   │ + setPIN()                   │
+                                   │ + setPUK()                   │
+                                   └───────────────────────────────┘
+
+
+─────────────────────────────────────────────────────────────
+             DIRECTORY STRUCTURE RELATION (Not UML)
+─────────────────────────────────────────────────────────────
+
+/src
+  ├─ coreLogic.cpp
+  ├─ MenuLogic.cpp
+  └─ main.cpp
+
+/include
+  ├─ startingLogicMain/
+  ├─ MenuMain/
+  ├─ UserAccountMain/
+  └─ UserActions/
+
+build/  
+  ├─ main  
+  └─ main.exe  
+
+buldProgramm.sh / buildProgramm.bat
+
+
+─────────────────────────────────────────────────────────────
+          UML-BEZIEHUNGEN (sehr einfach erklärt)
+─────────────────────────────────────────────────────────────
+
+Assoziation:
+    startingLogic → MainMenue
+    MainMenu → UserActions
+    Menu → DisplayInformation
+
+Aggregation:
+    UserLogic → createUser  
+    UserLogic → generateBankingCard
+
+Komposition:
+    (noch nicht im Code, erst später mit echten Account/Card Klassen)
+
+Vererbung:
+    (momentan keine, alles independent Klassen)
+
