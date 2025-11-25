@@ -13,7 +13,6 @@ class UserLogic {
 
     void createUser();
     
-    
     void createPin();
     void createPuk();
 

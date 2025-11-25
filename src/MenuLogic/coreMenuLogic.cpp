@@ -1,5 +1,8 @@
-#include "menuMain/menuArchitecture.h"
-#include "programmFunctionsMain/userActionsMain.h"
+//Include imports to use other files
+#include "menuMain\menuArchitecture.h"
+#include "startingLogicMain\startingLogicArchitecture.h"
+#include "programmFunctionsMain\userActionsMain.h"
+
 #include <iostream>
 #include <string>
 
@@ -79,6 +82,11 @@ void MainMenue::getMenuChoice() {
 
 //Validate the option
 void MainMenue::validateMenuChoice() {
+
+    UserLogic userActions;
+    MainMenue menuActions;
+    startingLogic startingActions;
+
     if (!isChoiceValid) {
         cout <<"The option selection can never reached because the input is invalid" <<endl;
         return;
@@ -167,6 +175,7 @@ void MainMenue::validateMenuChoice() {
         // --- Program Exit ---
         case 19:
             cout << "Exiting the program..." << endl;
+            startingActions.displayGoodByeMsg();
             break;
 
         // --- Default ---

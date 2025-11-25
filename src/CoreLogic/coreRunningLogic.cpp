@@ -83,11 +83,10 @@ void startingLogic::mainRunningLogic() {
             logic.getMenuChoice();
             logic.validateMenuChoice();
 
-            if (logic.menuChoice == 13) {
-                displayGoodByeMsg();
+            if (logic.menuChoice == 19) {
                 running = false;
-
             }
+            
         } catch (const exception &e) {
             cout <<"There is an error: " <<e.what() <<endl;
         }
