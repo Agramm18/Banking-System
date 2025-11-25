@@ -63,7 +63,7 @@ void MainMenue::getMenuChoice() {
 
         int userChoice = stoi(input);
 
-        if (userChoice < 1 || userChoice > 13) {
+        if (userChoice < 1 || userChoice > 19) {
             isChoiceValid = false;
             throw runtime_error("Invalid menu choice you can only choose options between 1 and 13 any other values will cause errors");
         }
