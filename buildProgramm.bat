@@ -17,7 +17,7 @@ echo !files!
 echo.
 
 REM Kompilieren
-g++ -std=c++17 -g !files! -I include -o build\main.exe
+g++ -std=c++20 -g !files! -I include -o build\main.exe
 
 if %errorlevel%==0 (
     echo.

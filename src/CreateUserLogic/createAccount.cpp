@@ -1,5 +1,5 @@
 //Include imports to use other files
-#include "UserAccountMain/userAccountMainArchitecture.h"
+#include <UserAccountMain/userAccountMainArchitecture.h>
 
 #include <iostream>
 #include <string>
@@ -37,6 +37,8 @@ void createUser::setGenerallName() {
         }
 }
 
+/*
+
 void createUser::setBirthday() {
     using namespace std;
     using namespace std::chrono;
@@ -64,7 +66,7 @@ void createUser::setBirthday() {
         int bdayMonthINT = stoi(bdayMonth);
         int bdayYearINT = stoi(bdayYear);
 
-        year_month_day UserBday = year(bdayYearINT) / month(bdayMonthINT) / day(bdayDayINT);
+        std::chrono::year_month_day UserBday = year(bdayYearINT) / month(bdayMonthINT) / day(bdayDayINT);
         
         //Checks for a valid date
         if (!UserBday.ok()) {
@@ -75,6 +77,6 @@ void createUser::setBirthday() {
     } catch (runtime_error &e) {
         cout <<"There is an error in the bday evaluaton please try again";
         cout <<"The error is: " << e.what() <<endl;
-    }
+    } 
 
-}
+*/

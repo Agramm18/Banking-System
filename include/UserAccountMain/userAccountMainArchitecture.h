@@ -1,6 +1,9 @@
 #ifndef userAccountMainArchitecture_H
 #define userAccountMainArchitecture_H
 
+#include <string>
+#include <chrono>
+
 //Define the main structure how your account and card will be created
 
 class generateProfile {
@@ -20,8 +23,7 @@ class createUser {
 
     //Global Variables
 
-    string FullName;
-    int Bday;
+    std::string FullName;
 
     //Create the user
     void setGenerallName(); //Set the name from the user
