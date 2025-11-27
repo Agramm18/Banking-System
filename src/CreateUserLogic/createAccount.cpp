@@ -103,3 +103,32 @@ void createUser::setAccountEmail() {
     }
 
 };
+
+void createUser::setAccountPhonenumber() {
+    //Set the phone number for your account
+
+    cout <<"Please note that only [+49 123456789] is the allowed format" <<endl;
+
+    string phone;
+
+    try {
+        cout <<"Please type in your phone number: " <<endl;
+        getline(cin, phone);
+
+        //check if number is empty
+        if (phone.empty()) {
+            throw runtime_error("Please type in a phone number");
+            //Check if number is valid
+        } else if (phone.find("+") == string::npos) {
+            throw runtime_error("Invalid phone number detected please type in valid number");
+        } else {
+            //set number if number is valid
+            PhoneNumber = phone;
+        }
+
+    } catch (runtime_error &e) {
+        cout <<"There is an error somewhere" <<endl;
+        cout <<"The error is: " << e.what() <<endl;
+    }
+
+}
