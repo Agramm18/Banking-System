@@ -119,8 +119,11 @@ void createUser::setAccountPhonenumber() {
         if (phone.empty()) {
             throw runtime_error("Please type in a phone number");
             //Check if number is valid
-        } else if (phone.find("+") == string::npos) {
+        } else if (phone[0] != '+') {
             throw runtime_error("Invalid phone number detected please type in valid number");
+            //Check if lenght is valid
+        } else if (phone.length() > 16 || phone.length() < 2 ) {
+            throw runtime_error("Please type in a valid number the number can't be less than 1 or bigger than 16");
         } else {
             //set number if number is valid
             PhoneNumber = phone;
