@@ -1,5 +1,6 @@
 #include "startingLogicMain/startingLogicArchitecture.h"
 #include "menuMain/menuArchitecture.h"
+#include "UserAccountMain/userAccountMainArchitecture.h"
 #include <iostream>
 #include <string>
 

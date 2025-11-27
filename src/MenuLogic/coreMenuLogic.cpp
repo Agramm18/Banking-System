@@ -1,6 +1,7 @@
 //Include imports to use other files
 #include "menuMain/menuArchitecture.h"
 #include "startingLogicMain/startingLogicArchitecture.h"
+#include "UserAccountMain/userAccountMainArchitecture.h"
 #include "programmFunctionsMain/userActionsMain.h"
 
 #include <iostream>
@@ -65,7 +66,7 @@ void MainMenue::getMenuChoice() {
 
         if (userChoice < 1 || userChoice > 19) {
             isChoiceValid = false;
-            throw runtime_error("Invalid menu choice you can only choose options between 1 and 13 any other values will cause errors");
+            throw runtime_error("Invalid menu choice you can only choose options between 1 and 19 any other values will cause errors");
         }
 
         menuChoice = userChoice;
@@ -85,6 +86,7 @@ void MainMenue::validateMenuChoice() {
 
     UserLogic userActions;
     MainMenue menuActions;
+    createUser generateAccount;
     startingLogic startingActions;
 
     if (!isChoiceValid) {
@@ -98,6 +100,7 @@ void MainMenue::validateMenuChoice() {
         // --- User Actions ---
         case 1:
             cout << "You can now create a new user / bank account..." << endl;
+            createUser();
             break;
 
         case 2:
