@@ -80,3 +80,26 @@ void createUser::setBirthday() {
     } 
 
 */
+
+void createUser::setAccountEmail() {
+    //Set the account email
+    string email;
+
+    try {
+
+        cout <<"Please type in your E-Mailadress: " <<endl;
+        getline(cin, email);
+
+        //Catch if email is empty
+        if (email.empty()) {
+            throw runtime_error("Your E-Mail cant't be empty");
+        } else {
+            EmailAdress = email; //set email
+        }
+
+    } catch (runtime_error &e) {
+        cout <<"An error where detected" <<endl;
+        cout <<"The error is: " << e.what() <<endl;
+    }
+
+};
