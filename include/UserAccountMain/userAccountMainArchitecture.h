@@ -25,6 +25,7 @@ class createUser {
 
     std::string FullName;
     std::string EmailAdress;
+    std::string PhoneNumber;
 
     //Create the user
     void setGenerallName(); //Set the name from the user
