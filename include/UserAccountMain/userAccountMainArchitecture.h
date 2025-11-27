@@ -24,6 +24,7 @@ class createUser {
     //Global Variables
 
     std::string FullName;
+    std::string EmailAdress;
 
     //Create the user
     void setGenerallName(); //Set the name from the user
