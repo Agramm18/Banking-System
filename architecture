@@ -4,81 +4,102 @@
                                          │
         ┌────────────────────────────────┼────────────────────────────────┐
         │                                │                                │
-┌───────────────┐              ┌────────────────┐              ┌───────────────────┐
-│   Build Files │              │  include/      │              │     src/          │
-└──────┬────────┘              └───────┬────────┘              └────────┬──────────┘
-       │                                │                                │
-       │                                │                                │
-┌──────┴───────────┐     ┌──────────────┴───────────────┐    ┌──────────┴──────────────────────┐
-│ buildProgramm.bat │     │   UserAccountMain/            │    │ main.cpp                        │
-│ buildProgramm.sh  │     │   userAccountMainArchitecture │    │ → Einstiegspunkt (main())       │
-└───────────────────┘     └──────────────┬───────────────┘    └──────────────────────────────────┘
+┌───────────────┐              ┌─────────────────────────┐       ┌───────────────────┐
+│   Build Files │              │        include/          │       │     src/          │
+├───────────────┤              └────────────┬────────────┘       └────────┬──────────┘
+│ buildProgramm.bat │                      │                                 │
+│ buildProgramm.sh  │                      │                                 │
+└───────────────────┘      ┌───────────────▼──────────────────┐     ┌────────▼────────────────────┐
+                           │ startingLogicMain/               │     │ main.cpp                    │
+                           │ startingLogicArchitecture.h      │     │ → Einstiegspunkt (main())   │
+                           └──────────────────────────────────┘     └──────────────────────────────┘
                                          │
-                                         │
-                            ┌────────────┴────────────────────────┐
-                            │          userAccountMain             │
-                            └──────────────────────────────────────┘
+                                         ▼
+                            ┌──────────────────────────┐
+                            │      startingLogic       │
+                            ├──────────────────────────┤
+                            │ + coreLogic()            │
+                            │ + startProgrammValidation│
+                            │ + mainRunningLogic()     │
+                            │ + displayHelloMsg()      │
+                            │ + displayGoodByeMsg()    │
+                            └─────────────┬────────────┘
                                           │
-                         ┌────────────────┼────────────────────┐
-                         │                │                    │
-             ┌────────────────┐  ┌───────────────────┐  ┌──────────────────┐
-             │ generateProfile│  │    createUser     │  │ generateBankingCard │
-             └───────┬────────┘  └───────────────────┘  └─────────┬────────┘
-                     │                    │                        │
-                     │                    │                        │
-      ┌──────────────┴────────────┐ ┌─────┴─────────────────┐ ┌────┴─────────────────────────┐
-      │ setAccountName()          │ │ setGenerallName()      │ │ setBankName()                │
-      │ setProfileEmail()         │ │ setBirthday()           │ │ setCardType()                │
-      │ setProfilePhoneNumber()   │ │ setCardAgeType()        │ │ setCardStatus()              │
-      │ setProfilePWSD()          │ │ setAccountEmail()       │ │ generateBIC()                │
-      └───────────────────────────┘ │ setAccountPhoneNumber() │ │ generateAccountNumber()      │
-                                   │ generateUserID()         │ │ generateBLZ()                │
-                                   └───────────────────────────┘ │ generateCVV()                │
-                                                                 │ setExpirationDate()         │
-                                                                 │ generateIBAN()              │
-                                                                 │ setPIN()                    │
-                                                                 │ setPUK()                    │
-                                                                 └─────────────────────────────┘
+                                          ▼
+                              ┌──────────────────────┐
+                              │       mainMenu       │
+                              ├──────────────────────┤
+                              │ + showMenu()         │
+                              │ + getMenuChoice()    │
+                              │ + validateMenuChoice()│
+                              └───────────┬──────────┘
+                                          │
+                                          ▼
+                      ┌─────────────────────────────────────┐
+                      │        UserActionsMain (Parent)     │
+                      └───────────────┬─────────────────────┘
+                                      │
+     ┌────────────────────────────────┼──────────────────────────────────────────┐
+     │                                │                                          │
+     ▼                                ▼                                          ▼
+
+┌──────────────────────┐    ┌────────────────────────┐       ┌───────────────────────────┐
+│      UserLogic       │    │     AccountActions     │       │      LoanAndLimits        │
+├──────────────────────┤    ├────────────────────────┤       ├───────────────────────────┤
+│ + collectUserData()  │    │ + AddMoney()           │       │ + TakeOutALoan()          │
+│ + selectBankcardType()│   │ + WithdrawMoney()       │       │ + changeDebitLimit()      │
+│ + createUser()       │    │ + TransferMoney()       │       │ + changeOverdraftLimit()  │
+│ + createPin()        │    │ + AddStandingOrder()    │       └───────────────────────────┘
+│ + createPuk()        │    └────────────────────────┘
+│ + generateIBAN()     │
+│ + generateBIC()      │        ┌──────────────────────────┐
+│ + generateExpirationDate()    │   SecurityAndSystem      │
+└──────────────────────┘        ├──────────────────────────┤
+                                │ + ChangePin()            │
+                                │ + BlockCard()            │
+                                └──────────────────────────┘
+
+                   ┌─────────────────────────────────────────────────────────┐
+                   │                 DisplayInformation                     │
+                   ├─────────────────────────────────────────────────────────┤
+                   │ + DisplayAccountDetails()                               │
+                   │ + DisplaySecurityInformation()                           │
+                   │ + DisplayAccountBalance()                                │
+                   │ + DisplayTransferActions()                               │
+                   │ + DisplayStandingOrders()                                │
+                   │ + DisplayOutstandingPayments()                           │
+                   │ + DisplayYourCards()                                     │
+                   └─────────────────────────────────────────────────────────┘
+
 
 ───────────────────────────────────────────────────────────────────────────────
-                          MENU ARCHITECTURE (include/menuMain)
+                     BUSINESS LOGIC LAYER (include / UserAccountMain)
 ───────────────────────────────────────────────────────────────────────────────
 
 ┌──────────────────────────┐
-│      mainMenu (Class)    │
+│      userAccountMain     │
 ├──────────────────────────┤
-│ + showMenu()             │
-│ + getMenuChoice()        │
-│ + validateMenuChoice()   │
-└──────────────────────────┘
-
-
-───────────────────────────────────────────────────────────────────────────────
-                      CORE PROGRAMM ARCHITECTURE (include/softwareMain)
-───────────────────────────────────────────────────────────────────────────────
-
-┌──────────────────────────┐
-│       MainLogic          │
-├──────────────────────────┤
-│ + StartingLogic()        │
-│ + MainProgrammLogic()    │
-│ + QuitLogic()            │
-└──────────────────────────┘
-
-
-───────────────────────────────────────────────────────────────────────────────
-                    STARTING LOGIC (include/startingLogicMain)
-───────────────────────────────────────────────────────────────────────────────
-
-┌──────────────────────────┐
-│      startingLogic       │
-├──────────────────────────┤
-│ + coreLogic()            │
-│ + startProgrammValidation() │
-│ + mainRunningLogic()     │
-│ + displayHelloMsg()      │
-│ + displayGoodByeMsg()    │
-└──────────────────────────┘
+│ generateProfile          │
+│ createUser               │
+│ generateBankingCard      │
+└─────────────┬────────────┘
+              │
+              ▼
+   ┌─────────────────────────────┬─────────────────────────────┬────────────────────────────┐
+   │       generateProfile       │          createUser          │     generateBankingCard    │
+   ├─────────────────────────────┼─────────────────────────────┼────────────────────────────┤
+   │ + setAccountName()          │ + setGenerallName()         │ + setBankName()            │
+   │ + setProfileEmail()         │ + setBirthday()              │ + setCardType()            │
+   │ + setProfilePhoneNumber()   │ + setCardAgeType()           │ + setCardStatus()          │
+   │ + setProfilePWSD()          │ + setAccountEmail()          │ + generateBIC()            │
+   │                             │ + setAccountPhonenumber()    │ + generateAccountNumber()  │
+   │                             │ + generateUserID()           │ + generateBLZ()            │
+   │                             │                               │ + generateCVV()            │
+   │                             │                               │ + setExpirationDate()      │
+   │                             │                               │ + generateIBAN()           │
+   │                             │                               │ + setPIN()                 │
+   │                             │                               │ + setPUK()                 │
+   └─────────────────────────────┴─────────────────────────────┴────────────────────────────┘
 
 
 ───────────────────────────────────────────────────────────────────────────────
@@ -98,4 +119,3 @@ src/
  │
  └── CoreLogic/
        └── coreRunningLogic.cpp
-
