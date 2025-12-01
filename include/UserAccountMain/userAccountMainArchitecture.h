@@ -10,6 +10,11 @@ class generateProfile {
     //Generate the Main Profile
     public:
 
+    std::string AccountName;
+    std::string AccountEmailAdress;
+    std::string AccountPhoneNumber;
+    std::string AccountPassword;
+
     void setAccountName(); //Set the profile name
     void setProfileEmail(); //Set the Main E-Mail for the profile
     void setProfilePhoneNumber(); //Set the Main Phone Number for the Profile
@@ -26,6 +31,7 @@ class createUser {
     std::string FullName;
     std::string EmailAdress;
     std::string PhoneNumber;
+    int Bday;
 
     //Create the user
     void setGenerallName(); //Set the name from the user
