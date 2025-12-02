@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <cctype>
+#include <ctype.h>
 
 using namespace std;
 
@@ -87,16 +88,30 @@ void generateProfile::setProfilePWSD() {
     string UserPWSD;
     bool isValid = true;
 
+    bool hasUpper = false;
+    bool hasLower = false;
+    bool hasDigit = false;
+    bool hasSpecial = false;
+
     try {
         cout <<"\nPlease set a Password for your Profile: ";
         getline(cin, UserPWSD);
 
+        //Check if pwsd lenght is valid
         if (UserPWSD.length() < 1 || UserPWSD.length() > 15) {
             throw runtime_error("Invalid Password lengh please choose a valid Password [lenght = 1-15]");
             isValid = false;
-
-            //To be continued
         }
+
+        //Analyze pwsd
+        for (char c : UserPWSD) { {
+            if(std::isupper(c)) hasUpper = true;
+            else if (std::islower(c)) hasLower = true;
+            else if (std::isdigit(c)) hasDigit = true;
+            else if (std::ispunct(c)) hasSpecial = true;
+        }
+
+
     }  catch (runtime_error &e) {
             cout <<"The password is invalid";
             cout <<"The error is: " << e.what() <<endl;
