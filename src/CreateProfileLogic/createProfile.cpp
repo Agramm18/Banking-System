@@ -86,7 +86,9 @@ void generateProfile::setProfilePWSD() {
     //Set the Password from your Profile
 
     string UserPWSD;
-    bool isValid = true;
+    string UserPWSDHashed;
+
+    bool isValid = false;
 
     bool hasUpper = false;
     bool hasLower = false;
@@ -94,26 +96,41 @@ void generateProfile::setProfilePWSD() {
     bool hasSpecial = false;
 
     try {
-        cout <<"\nPlease set a Password for your Profile: ";
+        cout << "\nPlease set a Password for your Profile: "; //Get the UserPWSD
         getline(cin, UserPWSD);
 
-        //Check if pwsd lenght is valid
-        if (UserPWSD.length() < 1 || UserPWSD.length() > 15) {
-            throw runtime_error("Invalid Password lengh please choose a valid Password [lenght = 1-15]");
-            isValid = false;
+        //Check if pwsd length is valid
+        if (UserPWSD.length() < 1 || UserPWSD.length() > 10) {
+            throw runtime_error("Invalid Password length please choose a valid Password [length = 1-10]");
         }
 
         //Analyze pwsd
-        for (char c : UserPWSD) { {
-            if(std::isupper(c)) hasUpper = true;
+        for (char c : UserPWSD) { 
+            if (std::isupper(c)) hasUpper = true;
             else if (std::islower(c)) hasLower = true;
             else if (std::isdigit(c)) hasDigit = true;
             else if (std::ispunct(c)) hasSpecial = true;
+        
+        //Catch error if the password is not valid
+        } if (!hasUpper) {
+            throw runtime_error("The Password is invalid the password must contain atleast one upper case letter");
+        } else if (!hasLower) {
+            throw runtime_error("The Password is invalid the password must contain at least one lower letter");
+        } else if (!hasDigit) {
+            throw runtime_error("The Password is invalid the password must contain at least one number");
+        } else if (!hasSpecial) {
+            throw runtime_error("The Password is invalid the password must contain at least one special letter");
+        } else {
+            //Seth the valid to true if password is correct
+            isValid = true;
+        } if (isValid) {
+            AccountPassword = UserPWSD; //Set the Profile Password
+            cout <<"\nThe Password is set sucsessfully";
+            cout <<"Your Password will now be hashed"<<endl;
         }
 
-
-    }  catch (runtime_error &e) {
-            cout <<"The password is invalid";
-            cout <<"The error is: " << e.what() <<endl;
+    } catch (runtime_error &e) {
+        cout << "The password is invalid";
+        cout << "The error is: " << e.what() << endl;
     }
 }
