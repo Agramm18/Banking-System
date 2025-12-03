@@ -14,6 +14,7 @@ class generateProfile {
     std::string AccountEmailAdress;
     std::string AccountPhoneNumber;
     std::string AccountPassword;
+    std::string AccountPasswordHashed;
 
     void setAccountName(); //Set the profile name
     void setProfileEmail(); //Set the Main E-Mail for the profile
