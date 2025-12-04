@@ -16,7 +16,7 @@ class generateDataBase {
 
 class generateProfile {
     //Generate the Main Profile
-    public:
+    private:
     std::string ProfileName;
     std::string ProfileEmailAdress;
     std::string ProfilePhoneNumber;
@@ -25,7 +25,7 @@ class generateProfile {
     std::string ProfilePasswordSalt;
 
     public:
-    void setAccountName(); //Set the profile name
+    void setProfiletName(); //Set the profile name
     void setProfileEmail(); //Set the Main E-Mail for the profile
     void setProfilePhoneNumber(); //Set the Main Phone Number for the Profile
     void generateProfilePWSD(); //Set the Password for your Account
