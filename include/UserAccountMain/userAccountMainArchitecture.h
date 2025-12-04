@@ -25,7 +25,7 @@ class generateProfile {
     std::string ProfilePasswordSalt;
 
     public:
-    void setProfiletName(); //Set the profile name
+    void setProfileName(); //Set the profile name
     void setProfileEmail(); //Set the Main E-Mail for the profile
     void setProfilePhoneNumber(); //Set the Main Phone Number for the Profile
     void generateProfilePWSD(); //Set the Password for your Account
