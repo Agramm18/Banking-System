@@ -1,5 +1,5 @@
-#ifndef menuLogic.h
-#define menuLogic.h
+#ifndef MENU_LOGIC_H
+#define MENU_LOGIC_H
 
 #include <string>
 #include <iostream>
