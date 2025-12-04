@@ -49,7 +49,6 @@ void MainMenuLogic::displayProgrammMenu() {
 }
 
 void MainMenuLogic::collectMenuChoice() {
-    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     string userInput;
     int userMenuChoice;
