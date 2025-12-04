@@ -1,5 +1,5 @@
-#ifndef userAccountMainArchitecture_H
-#define userAccountMainArchitecture_H
+#ifndef USER_ACCOUNT_MAIN_ARCHITECTURE_H
+#define USER_ACCOUNT_MAIN_ARCHITECTURE_H
 
 #include <string>
 #include <chrono>
