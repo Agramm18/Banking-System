@@ -6,10 +6,17 @@
 
 //Define the main structure how your account and card will be created
 
+class generateDataBase {
+    public:
+    void defineAddLogic(); //Define how the data will be added to the tables
+    void addProfile(); //Add the programm Profile
+    void addAccount(); //Add the banking Account
+    void addCardInfos();
+};
+
 class generateProfile {
     //Generate the Main Profile
     public:
-
     std::string ProfileName;
     std::string ProfileEmailAdress;
     std::string ProfilePhoneNumber;
@@ -17,6 +24,7 @@ class generateProfile {
     std::string ProfilePasswordHash;
     std::string ProfilePasswordSalt;
 
+    public:
     void setAccountName(); //Set the profile name
     void setProfileEmail(); //Set the Main E-Mail for the profile
     void setProfilePhoneNumber(); //Set the Main Phone Number for the Profile

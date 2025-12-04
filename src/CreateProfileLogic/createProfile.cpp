@@ -82,7 +82,6 @@ void generateProfile::setProfilePhoneNumber() {
 
 }
 
-
 void generateProfile::generateProfilePWSD() {
     //Set the Password from your Profile
 
