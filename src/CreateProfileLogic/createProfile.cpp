@@ -4,6 +4,7 @@
 #include <string>
 #include <cctype>
 #include <ctype.h>
+#include <sodium.h>
 
 using namespace std;
 
@@ -20,7 +21,7 @@ void generateProfile::setAccountName() {
         if (UserName.empty()) {
             throw runtime_error("The User name can't be empty");
         } else {
-            AccountName = UserName;
+            ProfileName = UserName;
             cout <<"\nThe Username for your Profile where set sucsessfully" <<endl;
             cout <<"The Username you setted is: " << UserName <<endl;
         }
@@ -45,7 +46,7 @@ void generateProfile::setProfileEmail() {
         } else if (UserEmail.find('.') == string::npos) {
             throw runtime_error("Invalid Email missing . [.de, .com]");
         } else {
-            AccountEmailAdress = UserEmail;
+            ProfileEmailAdress = UserEmail;
             cout <<"\nThe Email Adress for your Profile where setted sucsessfully" <<endl;
             cout <<"The Email Adress you setted is: " <<UserEmail <<endl;
         }
@@ -70,7 +71,7 @@ void generateProfile::setProfilePhoneNumber() {
         } else if (UserPhoneNumber[0] != '+') {
             throw runtime_error("Invalid phone number the phone number must start with + [+49, +43]");
         } else {
-            AccountPhoneNumber = UserPhoneNumber;
+            ProfilePhoneNumber = UserPhoneNumber;
             cout <<"\nThe Phonenumber for your Profile where setted sucsessfully" <<endl;
             cout <<"The Phone Number you setted is: " << UserPhoneNumber <<endl;
         } 
@@ -82,7 +83,7 @@ void generateProfile::setProfilePhoneNumber() {
 }
 
 
-void generateProfile::setProfilePWSD() {
+void generateProfile::generateProfilePWSD() {
     //Set the Password from your Profile
 
     string UserPWSD;
@@ -124,7 +125,7 @@ void generateProfile::setProfilePWSD() {
             //Seth the valid to true if password is correct
             isValid = true;
         } if (isValid) {
-            AccountPassword = UserPWSD; //Set the Profile Password
+            ProfilePasswordPlain = UserPWSD; //Set the Profile Password
             cout <<"\nThe Password is set sucsessfully";
             cout <<"Your Password will now be hashed"<<endl;
         }
@@ -133,4 +134,56 @@ void generateProfile::setProfilePWSD() {
         cout << "The password is invalid";
         cout << "The error is: " << e.what() << endl;
     }
+}
+
+void generateProfile::hashProfilePWSD() {
+    //Hash the password with sodium
+
+    //Initialise Sodium
+    if (sodium_init() < 0) {
+        throw runtime_error("Failed to initialize Libsodium");
+    }
+
+    //Call obj from AccountPassword()
+    std::string plainPWSD = ProfilePasswordPlain;
+
+    unsigned char key[32]; //Hash Byte lenght
+    unsigned char salt[crypto_pwhash_SALTBYTES]; //Fit SALT to BYTE [32]
+
+    //Generate SALT
+    randombytes_buf(salt, sizeof salt);
+
+    //Generate HASH
+    if (crypto_pwhash(
+        key, sizeof key,
+        plainPWSD.c_str(), plainPWSD.length(),
+        salt,
+        crypto_pwhash_OPSLIMIT_INTERACTIVE,
+        crypto_pwhash_MEMLIMIT_INTERACTIVE,
+        crypto_pwhash_ALG_DEFAULT) != 0)
+    {
+        throw runtime_error("Hashing failed");
+    } else {
+        cout <<"The Password hashed sucsessfully";
+    }
+
+    //Convert SALT and HASH back to str
+
+    //Convert hash back
+    char hash_b64[sodium_base64_ENCODED_LEN(sizeof key, sodium_base64_VARIANT_ORIGINAL)];
+    sodium_bin2base64(hash_b64, sizeof hash_b64, key, sizeof key, sodium_base64_VARIANT_ORIGINAL);
+
+    //Convert SALT back
+
+    char salt_b64[sodium_base64_ENCODED_LEN(sizeof salt, sodium_base64_VARIANT_ORIGINAL)];
+    sodium_bin2base64(salt_b64, sizeof salt_b64, salt, sizeof salt, sodium_base64_VARIANT_ORIGINAL);
+
+    ProfilePasswordHash = hash_b64; //Login & Registration
+    ProfilePasswordSalt = salt_b64; // Database
+
+    cout<<"\nThe Password where Hashed sucsessfully";
+    cout <<"The SALT is generated sucsessfully";
+    cout <<"Your Profile is now settet sucssessfully and complete";
+    cout <<"The data will be added to the database";
+    cout <<"Have fun with my project" <<endl;
 }
