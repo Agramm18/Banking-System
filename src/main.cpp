@@ -1,7 +1,9 @@
-#include "startingLogicMain/startingLogicArchitecture.h"
+#include "controller.h"
 
 int main() {
-    startingLogic system;
-    system.coreLogic();
+
+    ApplicationController system;
+    system.run();
+
     return 0;
 }
