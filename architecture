@@ -1,6 +1,11 @@
 build
-      -> build.sh (linux compile)
       -> build.bat (windows compile)
+            /build
+            -> main.exe
+            -> libsodium.dll
+            -> /obj
+                  -> .obj
+                  
             -> main.cpp (main file)
                   -> Controller (Where the core running logic is (Login, Registration, Call Menu))
                         -> MainMenu (Validation and redirects the user to the desired function or calls classes & functions.)
