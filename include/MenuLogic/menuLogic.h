@@ -9,7 +9,7 @@
 class MainMenuLogic {
     //Define the main menu
 
-    private:
+    public:
     int menuChoice;
 
     public:
