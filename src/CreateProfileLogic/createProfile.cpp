@@ -8,7 +8,7 @@
 
 using namespace std;
 
-void generateProfile::setAccountName() {
+void generateProfile::setProfileName() {
     //Set your Account Namet for the programm
 
     string UserName;
