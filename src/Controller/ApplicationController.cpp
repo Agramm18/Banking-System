@@ -24,5 +24,6 @@ void ApplicationController::run() {
     displayHelloMSG();
 
     MainMenuLogic mainMenu;
-    mainMenu.validateMenuChoice();
+    mainMenu.displayProgrammMenu();
+    mainMenu.collectMenuChoice();
 }
