@@ -10,17 +10,18 @@ class generateProfile {
     //Generate the Main Profile
     public:
 
-    std::string AccountName;
-    std::string AccountEmailAdress;
-    std::string AccountPhoneNumber;
-    std::string AccountPassword;
-    std::string AccountPasswordHashed;
+    std::string ProfileName;
+    std::string ProfileEmailAdress;
+    std::string ProfilePhoneNumber;
+    std::string ProfilePasswordPlain;
+    std::string ProfilePasswordHash;
+    std::string ProfilePasswordSalt;
 
     void setAccountName(); //Set the profile name
     void setProfileEmail(); //Set the Main E-Mail for the profile
     void setProfilePhoneNumber(); //Set the Main Phone Number for the Profile
-    void setProfilePWSD(); //Set the Password for your Account
-    
+    void generateProfilePWSD(); //Set the Password for your Account
+    void hashProfilePWSD();
 };
 
 class createUser {
