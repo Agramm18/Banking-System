@@ -4,7 +4,12 @@
 #include <iostream>
 #include <string>
 #include <limits>
-#include <chrono>
+#include <fstream>
+
+#include <nlohmann/json.hpp>
+using json = nlohmann::json;
+
+
 
 using namespace std;
 using namespace std::chrono;
@@ -37,10 +42,7 @@ void createUser::setGenerallName() {
         }
 }
 
-/*
 void createUser::setBirthday() {
-    using namespace std;
-    using namespace std::chrono;
     //Set the birthday from the user
     
     string bdayDay;
@@ -48,6 +50,9 @@ void createUser::setBirthday() {
     string bdayYear;
 
     try {
+
+        json data;
+
         //cin int fix
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
@@ -59,26 +64,64 @@ void createUser::setBirthday() {
 
         cout <<"Please type in the year when you where born: ";
         getline(cin, bdayYear);
-        
-        //Convert input to int
-        int bdayDayINT = stoi(bdayDay);
-        int bdayMonthINT = stoi(bdayMonth);
-        int bdayYearINT = stoi(bdayYear);
 
-        year_month_day UserBday = year(bdayYearINT) / month(bdayMonthINT) / day(bdayDayINT);
-        
-        //Checks for a valid date
-        if (!UserBday.ok()) {
-            throw runtime_error("An invalid birhtday where set please try again");
+        if (bdayDay.empty() || bdayMonth.empty() || bdayYear.empty()) {
+            throw runtime_error("The bday can't be empty");
         } else {
-            UserBday = Bday;
+            //Convert input to int
+            int bdayDayINT = stoi(bdayDay);
+            int bdayMonthINT = stoi(bdayMonth);
+            int bdayYearINT = stoi(bdayYear);
+
+            cout<<"\nJSON-File will be generated";
+
+            //Set Data
+            data["day"] = bdayDayINT;
+            data["month"] = bdayMonthINT;
+            data["year"] = bdayYearINT;
+            data["final-bday"] = nlohmann::json::array();
+            data["date-value"] = false;
+
+            //Genearte .json
+            std::ofstream file("user_bday.json");
+
+            //Error handeling
+            if (!file.is_open()) {
+                throw runtime_error("The JSON where not be created");
+            }
+
+            file << data.dump(4);
+            file.close();
+
+            cout <<"Python will now validate the bday and update the .json";
+            system("python validate_bday.py"); //execute .py
+
+            std::ifstream readfile("user_bday.json");
+            readfile >> data; //load data
+
+            if (data["date-value"].get<bool>()) {
+
+                auto b = data["final-bday"];
+
+                cout << "The bday is valid: "
+                    << b[0].get<int>() << "."
+                    << b[1].get<int>() << "."
+                    << b[2].get<int>() << "\n";
+
+                Bday.day = b[0].get<int>();
+                Bday.month = b[1].get<int>();
+                Bday.year = b[2].get<int>();
+
+            } else {
+                cout << "The birthday has an invalid date format\n";
+            }
         }
+
     } catch (runtime_error &e) {
         cout <<"There is an error in the bday evaluaton please try again";
         cout <<"The error is: " << e.what() <<endl;
     }
 }
-*/
 
 void createUser::setAccountEmail() {
     //Set the account email
