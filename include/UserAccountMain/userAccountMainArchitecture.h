@@ -41,7 +41,14 @@ class createUser {
     std::string FullName;
     std::string EmailAdress;
     std::string PhoneNumber;
-    int Bday;
+    
+    struct Birthday {
+        int day;
+        int month;
+        int year;
+    };
+
+    Birthday Bday;
 
     //Create the user
     void setGenerallName(); //Set the name from the user
