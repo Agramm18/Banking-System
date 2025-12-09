@@ -195,11 +195,11 @@ void createUser::setCardAgeType() {
     //Set the Age Type
 
     try {
-        if (AgeType == true) {
-            AgeCardType == "Adult";
+        if (AgeType) {
+            AgeCardType = "Adult";
             cout <<"The User gets an Adult Account";
-        } else if (AgeType == false) {
-            AgeCardType == "Child";
+        } else if (!AgeType) {
+            AgeCardType = "Child";
             cout <<"The User is underage he gets an Child Account";
         } else {
             throw runtime_error("The Age verification didn't work");
