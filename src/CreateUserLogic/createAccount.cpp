@@ -69,50 +69,61 @@ void createUser::setBirthday() {
 
         if (bdayDay.empty() || bdayMonth.empty() || bdayYear.empty()) {
             throw runtime_error("The bday can't be empty");
+        }  else {
+    // Convert input to int
+    int bdayDayINT = stoi(bdayDay);
+    int bdayMonthINT = stoi(bdayMonth);
+    int bdayYearINT = stoi(bdayYear);
+
+    cout << "\nJSON-File will be generated";
+
+    // Set Data
+    data["day"] = bdayDayINT;
+    data["month"] = bdayMonthINT;
+    data["year"] = bdayYearINT;
+    data["final-bday"] = nlohmann::json::array();
+    data["date-value"] = false;
+
+    // Generate JSON file
+    std::ofstream file("user_bday.json");
+
+    if (!file.is_open()) {
+        throw runtime_error("The JSON could not be created");
+    }
+
+    file << data.dump(4);
+    file.close();
+
+    cout << "\nPython will now validate the bday and update the .json\n";
+    system("python validate_bday.py");
+
+    // Load updated JSON
+    std::ifstream readfile("user_bday.json");
+    readfile >> data;
+
+    if (data["date-value"].get<bool>()) {
+
+        auto b = data["final-bday"];
+
+        cout << "The birthday is valid: "
+            << b[0].get<int>() << "."
+            << b[1].get<int>() << "."
+            << b[2].get<int>() << "\n";
+
+        Bday.day = b[0].get<int>();
+        Bday.month = b[1].get<int>();
+        Bday.year = b[2].get<int>();
+
+        // -------------------------------------------
+        //  GET AGE TYPE (True = adult, False = minor)
+        // -------------------------------------------
+        bool AgeType = data["age-type"].get<bool>();   // default → wird in Python überschrieben
+        
+        if (AgeType) {
+            cout << "User is adult (18+)\n";
         } else {
-            //Convert input to int
-            int bdayDayINT = stoi(bdayDay);
-            int bdayMonthINT = stoi(bdayMonth);
-            int bdayYearINT = stoi(bdayYear);
-
-            cout<<"\nJSON-File will be generated";
-
-            //Set Data
-            data["day"] = bdayDayINT;
-            data["month"] = bdayMonthINT;
-            data["year"] = bdayYearINT;
-            data["final-bday"] = nlohmann::json::array();
-            data["date-value"] = false;
-
-            //Genearte .json
-            std::ofstream file("user_bday.json");
-
-            //Error handeling
-            if (!file.is_open()) {
-                throw runtime_error("The JSON where not be created");
-            }
-
-            file << data.dump(4);
-            file.close();
-
-            cout <<"Python will now validate the bday and update the .json";
-            system("python validate_bday.py"); //execute .py
-
-            std::ifstream readfile("user_bday.json");
-            readfile >> data; //load data
-
-            if (data["date-value"].get<bool>()) {
-
-                auto b = data["final-bday"];
-
-                cout << "The bday is valid: "
-                    << b[0].get<int>() << "."
-                    << b[1].get<int>() << "."
-                    << b[2].get<int>() << "\n";
-
-                Bday.day = b[0].get<int>();
-                Bday.month = b[1].get<int>();
-                Bday.year = b[2].get<int>();
+            cout << "User is underage (<18)\n";
+        }
 
             } else {
                 cout << "The birthday has an invalid date format\n";
@@ -201,5 +212,79 @@ void createUser::generateUserID() {
     for (int n : uniqueNumbers) {
         cout <<"The generated numbers are: " <<n <<endl;
     }
-    
+
+    //Generate lowercase letters in range 5
+    uniform_int_distribution<> lowerDist(0, 25);
+    unordered_set<int> lowerSet;
+
+    while(lowerSet.size() < 5) {
+        int num = lowerDist(gen);
+        lowerSet.insert(num);
+    }
+
+    cout <<"The generated lower chars are: ";
+    for (int n : lowerSet) {
+        char letter = 'a' + n;
+        cout << letter << " ";
+    }
+
+    cout << endl;
+
+    //Generate uppercase letters in range 5
+    uniform_int_distribution<> upperDist(0, 25);
+    unordered_set<int> upperSet;
+
+    while(upperSet.size() < 5) {
+        int num = upperDist(gen);
+        upperSet.insert(num);
+    }
+
+    cout << "Uppercase chars are: ";
+    for (int n : upperSet) {
+        char letter = 'A' + n;
+        cout << letter << " ";
+    }
+    cout << endl;
+
+
+    //Generate the User ID based on the random number the random upper and lowercased chars
+
+    vector<string> UserID;
+
+    //Add the Numbers
+    for (int n : uniqueNumbers) {
+        UserID.push_back(to_string(n));
+    }
+
+    //Add the lowercase chars
+    for (int n : lowerSet) {
+        char letter = 'a' + n;
+        UserID.push_back(string(1, letter));
+    }
+
+    //Add the uppercase chars
+    for (int n : upperSet) {
+        char letter = 'A' +  n;
+        UserID.push_back(string(1, letter));
+    }
+
+    try {
+        //Check if lenght = 20 (random_numbers = 10, random_upper = 5, random_lower = 5)
+        if (UserID.size() < 20) {
+            throw runtime_error("The size is invalid it should be 20");
+        } else {
+            //Generate a random id with shuffle
+            shuffle(UserID.begin(), UserID.end(), gen);
+        }
+    } catch (runtime_error & e) {
+        cout <<"The error is: " << e.what() <<endl;
+    }
+
+    string GeneratedID;
+    for (const string e : UserID) {
+        GeneratedID += e;
+    }
+
+    cout <<"The User ID where Generated Sucsessfully";
+    AccountID = GeneratedID;
 }
