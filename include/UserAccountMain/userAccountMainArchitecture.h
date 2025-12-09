@@ -52,6 +52,10 @@ class createUser {
 
     std::string AccountID;
 
+    bool AgeType;
+
+    std::string AgeCardType;
+
     //Create the user
     void setGenerallName(); //Set the name from the user
     void setBirthday(); //Set the birthday from the user
