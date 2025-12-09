@@ -5,6 +5,8 @@
 #include <string>
 #include <limits>
 #include <fstream>
+#include <random>
+#include <unordered_set>
 
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
@@ -176,4 +178,28 @@ void createUser::setAccountPhonenumber() {
         cout <<"The error is: " << e.what() <<endl;
     }
 
+}
+
+
+void createUser::generateUserID() {
+    //Generate the User ID
+
+    cout <<"Your User ID will now be generated"<<endl;
+
+    //Generate random number in range 10
+    
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> dist(1, 25);
+    unordered_set<int> uniqueNumbers;
+
+    while (uniqueNumbers.size() < 10) {
+        int num = dist(gen);
+        uniqueNumbers.insert(num);
+    }
+
+    for (int n : uniqueNumbers) {
+        cout <<"The generated numbers are: " <<n <<endl;
+    }
+    
 }
