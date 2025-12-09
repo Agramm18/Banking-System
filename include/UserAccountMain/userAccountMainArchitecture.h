@@ -50,6 +50,8 @@ class createUser {
 
     Birthday Bday;
 
+    std::string UserID;
+
     //Create the user
     void setGenerallName(); //Set the name from the user
     void setBirthday(); //Set the birthday from the user
