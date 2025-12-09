@@ -17,6 +17,17 @@ def dateValidation():
             data["date-value"] = True
             data["final-bday"] = [day, month, year]
 
+            today = date.today()
+            birthday = date(year, month, day)
+
+            age_verification = today.year - birthday.year - ((today.month, today.day) < (birthday.month, birthday.day))
+
+            if age_verification >= 18:
+                data["age-type"] = True
+
+            elif age_verification < 18:
+                data["age-type"] = False
+
         except ValueError as e:
             data["date-value"] = False
             data["final-bday"] = []
