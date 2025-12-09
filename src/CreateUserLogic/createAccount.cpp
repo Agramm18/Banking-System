@@ -118,7 +118,7 @@ void createUser::setBirthday() {
         //  GET AGE TYPE (True = adult, False = minor)
         // -------------------------------------------
         bool AgeType = data["age-type"].get<bool>();   // default → wird in Python überschrieben
-        
+
         if (AgeType) {
             cout << "User is adult (18+)\n";
         } else {
@@ -191,6 +191,23 @@ void createUser::setAccountPhonenumber() {
 
 }
 
+void createUser::setCardAgeType() {
+    //Set the Age Type
+
+    try {
+        if (AgeType == true) {
+            AgeCardType == "Adult";
+            cout <<"The User gets an Adult Account";
+        } else if (AgeType == false) {
+            AgeCardType == "Child";
+            cout <<"The User is underage he gets an Child Account";
+        } else {
+            throw runtime_error("The Age verification didn't work");
+        }
+    } catch(runtime_error &e) {
+        cout <<"There is an error: " <<e.what();
+    }
+}
 
 void createUser::generateUserID() {
     //Generate the User ID
