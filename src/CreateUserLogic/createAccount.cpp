@@ -1,5 +1,5 @@
 //Include imports to use other files
-#include <UserAccountMain/userAccountMainArchitecture.h>
+#include <userData/account/accountData.h>
 
 #include <iostream>
 #include <string>
@@ -11,14 +11,12 @@
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
 
-
-
 using namespace std;
 using namespace std::chrono;
 
 //Create A new User
 
-void createUser::setGenerallName() {
+void account::setGenerallName() {
     //Set the generall name
     string firstName;
     string lastName;
@@ -44,7 +42,7 @@ void createUser::setGenerallName() {
         }
 }
 
-void createUser::setBirthday() {
+void account::setBirthday() {
     //Set the birthday from the user
     
     string bdayDay;
@@ -136,7 +134,7 @@ void createUser::setBirthday() {
     }
 }
 
-void createUser::setAccountEmail() {
+void account::setAccountEmail() {
     //Set the account email
     string email;
 
@@ -159,7 +157,7 @@ void createUser::setAccountEmail() {
 
 };
 
-void createUser::setAccountPhonenumber() {
+void account::setAccountPhonenumber() {
     //Set the phone number for your account
 
     cout <<"Please note that only [+49 123456789] is the allowed format" <<endl;
@@ -191,7 +189,7 @@ void createUser::setAccountPhonenumber() {
 
 }
 
-void createUser::setCardAgeType() {
+void account::setCardAgeType() {
     //Set the Age Type
 
     try {
@@ -209,7 +207,7 @@ void createUser::setCardAgeType() {
     }
 }
 
-void createUser::generateUserID() {
+void account::generateUserID() {
     //Generate the User ID
 
     cout <<"Your User ID will now be generated"<<endl;
