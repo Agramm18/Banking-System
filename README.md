@@ -1,100 +1,98 @@
 # Banking System Simulation
 
-This project is a simulation of a traditional banking system combined with modern online banking features (similar to PayPal, Apple Pay, etc.).  
+This project is a simulation of a traditional banking system combined with modern online banking features (similar to PayPal or Apple Pay).
 It was developed to learn and practice C++ and will later be extended with a GUI using Qt.
 
-# Used Technologies
+## Used Technologies
 
-1. C++ as the main language
-2. Python for Simple Validation and data handeling
-3. JSON to store data and send it to python
-4. SQL-Lite for the database
+1. **C++** as the main programming language
+2. **Python** for validation and auxiliary processing
+3. **JSON** for data exchange between C++ and Python
+4. **SQLite** as the database system
 
-# used libaries
+## Used Libraries
 
-1. libsodium (for password hashing and encryption)
-2. datetime & date to validate the date from the user b-day
-3. pycountries (to get the country code to generate valid bank cards)
+1. **libsodium** – password hashing and encryption
+2. **datetime / date (Python)** – date validation
+3. **pycountry** – country code lookup for generating valid bank card information
 
-# Needed Libaries & Tools
+## Required Libraries & Tools
 
-1. vcpkg
-  |
-  --> Libsodium
+### 1. vcpkg
 
-2. pip & python
- |
- --> json
- --> date & datetime
- --> pycountries (pip install pycountries)
+* libsodium
 
-3. SQL Connector for C/C++
+### 2. Python & pip packages
 
-# Database Logic
+* json (built-in)
+* datetime & date (built-in)
+* pycountry (`pip install pycountry`)
+
+### 3. SQL Connector for C/C++
+
+## Database Logic
 
 Main Profile
-|
---> User Account
-  |
-  --> Card Information
-    |
-    --> Card moovments & changes
+ └── User Account
+      └── Card Information
+           └── Card Movements & Changes
 
-# Core Split
+## Core Structure
 
 System Profile
-|
---> Account
-  |
-  --> Card Data
-    |
-    --> Card Moovment (Transaction)
+ └── Account
+      └── Card Data
+           └── Card Movement (Transactions)
 
-# Main Architecture
+## Main Architecture
 
 main.cpp
-|
---> windowsBuild.bat (To Compile the project right)
-  |
-  --> /build (folder to compile the .exe)
-    |
-    --> ApplicationController.cpp (Controlls the whole system)
-      |
-      --> Login/Registration
-        |
-        --> 2FA
-          |
-          --> menu.cpp (Acctual Controller to call each class & function)
+ └── windowsBuild.bat (script to build the project)
+      └── /build (compiled .exe, Python scripts, JSON files)
+           └── ApplicationController.cpp (controls the entire system)
+                └── Login / Registration
+                     └── Two-Factor Authentication
+                          └── menu.cpp (controller for all classes & functions)
 
-# File Structure
+## File Structure
 
-- main.cpp
-- windowsBuild.bat
-  |
-  --> build (compiler folder with the main.exe the python files and the json files)
-  --> include (folder with the .h files)
-  --> src (folder with the .cpp files)
+main.cpp
+windowsBuild.bat
+/build
+   ├── main.exe
+   ├── Python files
+   └── JSON files
+/include
+   └── header files (.h)
+/src
+   └── source files (.cpp)
 
-# current features
+## Current Features
 
-- Core
-  - Create Account
-  - Create Profile
-  - Main Menue
-  
-# planned Features
+### Core
 
-- Core
-  - Login/ Logout, 2FA, Database
-  - Main Menu
+* Account creation
+* Profile creation
+* Main menu
 
-- Banking
-  - Create Banking Cards (Debit Card, Giro Card, Credit Card)
-  - Deposit money, withdraw money, transfer money, add and edit availability, limits
-  - Create & adjust standing orders
-  - Set & adjust overdraft limit
+## Planned Features
 
-# planned technologies
+### Core
 
-- Database
-- GUI
+* Login / Logout
+* Full 2FA integration
+* Database connection
+* Extended main menu
+
+### Banking
+
+* Create bank cards (Debit, Giro, Credit)
+* Deposit, withdraw, transfer
+* Set and edit availability and limits
+* Create and manage standing orders
+* Set and adjust overdraft limits
+
+## Planned Technologies
+
+* Full database integration
+* Qt-based GUI
