@@ -6,6 +6,7 @@
 #include <limits>
 #include <fstream>
 #include <random>
+#include <cctype>
 #include <unordered_set>
 
 #include <nlohmann/json.hpp>
@@ -42,6 +43,89 @@ void account::setGenerallName() {
         }
 }
 
+void account::setAddress() {
+    //Set the Address from the User
+
+    string city;
+
+    string streetname;
+    string houseNumber;
+
+    string postalCode;
+
+    string county;
+    string country;
+
+    try {
+        cout <<"Please type in your city name: ";
+        getline(cin, city);
+
+        cout << "Please type in your streetname: ";
+        getline(cin, streetname);
+
+        cout <<"Please type in your house number";
+        getline(cin, houseNumber);
+
+        cout <<"Please type in your postal code: ";
+        getline(cin, postalCode);
+
+        cout <<"Please type in your county: ";
+        getline(cin, county);
+
+        cout <<"Please type in your country: ";
+        getline(cin, country);
+
+        if (city.empty() || streetname.empty() || houseNumber.empty() || postalCode.empty() || county.empty() || country.empty()) {
+            throw runtime_error("One of the fields is empty please try again");
+        } else {
+
+            //Make the first letter in the country upper and the rest lower
+            for (char &c : country) {
+                c = tolower(c);
+            }
+            country[0] = toupper(country[0]);
+
+            cout <<"The JSON to set the right Country Code will be generated" <<endl;
+
+            //Set Data
+            json data;
+            data["country"] = country;
+            data["country-code"] = "default";
+
+            //Generate JSON-File
+
+            std::ofstream file("set_country_code.json");
+            if (!file.is_open()) {
+                throw runtime_error("The JSON could not be created");
+            }
+            
+            file << data.dump(2);
+            file.close();
+
+            cout <<"\nPython will now set the right Country Code based on your country";
+            system("python set_country_code.py");
+
+            //load updated json
+            std::ifstream readfile("set_country_code.json");
+            readfile >> data;
+
+            //Update the struct
+            AddressData.city = city;
+            AddressData.houseNumber = houseNumber;
+            AddressData.postalCode = postalCode;
+            AddressData.county = county;
+            AddressData.country = country;
+            AddressData.countryCode = data["country-code"];
+
+            cout <<"All data from your address information where set sucsessfully"<<endl;
+
+        }
+    } catch (runtime_error &e) {
+        cout <<"The error is: " <<e.what() <<endl;
+    }
+
+}
+
 void account::setBirthday() {
     //Set the birthday from the user
     
@@ -73,7 +157,7 @@ void account::setBirthday() {
     int bdayMonthINT = stoi(bdayMonth);
     int bdayYearINT = stoi(bdayYear);
 
-    cout << "\nJSON-File will be generated";
+    cout << "\nJSON-File to validate the date and set the age type will be generated";
 
     // Set Data
     data["day"] = bdayDayINT;
