@@ -3,99 +3,98 @@
 This project is a simulation of a traditional banking system combined with modern online banking features (similar to PayPal, Apple Pay, etc.).  
 It was developed to learn and practice C++ and will later be extended with a GUI using Qt.
 
----
+# Used Technologies
 
-## Features Overview
+1. C++ as the main language
+2. Python for Simple Validation and data handeling
+3. JSON to store data and send it to python
+4. SQL-Lite for the database
 
-### **Authentication**
-- **Login / Registration**  
-  Includes user authentication and secure profile creation.
+# used libaries
 
----
+1. libsodium (for password hashing and encryption)
+2. datetime & date to validate the date from the user b-day
+3. pycountries (to get the country code to generate valid bank cards)
 
-## User Actions
-- **Create User**  
-  Create a new user profile within the banking system.
-- **Select Bankcard Type**  
-  Choose between available card types (e.g., debit or credit).
+# Needed Libaries & Tools
 
----
+1. vcpkg
+  |
+  --> Libsodium
 
-## Card Generation System
+2. pip & python
+ |
+ --> json
+ --> date & datetime
+ --> pycountries (pip install pycountries)
 
-The project includes a fully featured card generation module that simulates realistic banking cards with all required components.  
-It supports creating, configuring, and validating new cards.
+3. SQL Connector for C/C++
 
-### **Card Configuration**
-- **Set Bank Name**  
-  Assigns the issuing bank’s name.
-- **Set Card Type**  
-  Selects the card type (Visa, Girocard, Credit Card).
-- **Set Card Status**  
-  Defines whether the card is active, blocked, or pending activation.
+# Database Logic
 
-### **Card Data Generation**
-- **Generate BIC**  
-  Creates a valid Bank Identifier Code.
-- **Generate Account Number**  
-  Generates a numerical account identifier.
-- **Generate BLZ**  
-  Produces a German bank code (Bankleitzahl).
-- **Generate CVV**  
-  Generates a secure 3-digit CVV (credit cards only).
-- **Set Expiration Date**  
-  Assigns a realistic expiration date (MM/YY).
-- **Generate IBAN**  
-  Builds a valid IBAN using bank code, account number, and checksum logic.
+Main Profile
+|
+--> User Account
+  |
+  --> Card Information
+    |
+    --> Card moovments & changes
 
-### **Security Setup**
-- **Set PIN**  
-  Creates a secure PIN for the card.
-- **Set PUK**  
-  Generates a recovery PUK used when the PIN is entered incorrectly multiple times.
+# Core Split
 
----
+System Profile
+|
+--> Account
+  |
+  --> Card Data
+    |
+    --> Card Moovment (Transaction)
 
-## Account Actions
-- **Add Money**  
-  Deposit funds into the account.
-- **Withdraw Money**  
-  Withdraw funds while respecting account limits.
-- **Transfer Money**  
-  Transfer funds to another account.
-- **Add Standing Order**  
-  Create automated recurring payments.
+# Main Architecture
 
----
+main.cpp
+|
+--> windowsBuild.bat (To Compile the project right)
+  |
+  --> /build (folder to compile the .exe)
+    |
+    --> ApplicationController.cpp (Controlls the whole system)
+      |
+      --> Login/Registration
+        |
+        --> 2FA
+          |
+          --> menu.cpp (Acctual Controller to call each class & function)
 
-## Loans & Limits
-- **Take Out a Loan**  
-  Request and receive a loan under predefined conditions.
-- **Change Debit Limit**  
-  Adjust the maximum debit card transaction limit.
-- **Change Overdraft Limit**  
-  Modify how far the account may go into negative balance.
+# File Structure
 
----
+- main.cpp
+- windowsBuild.bat
+  |
+  --> build (compiler folder with the main.exe the python files and the json files)
+  --> include (folder with the .h files)
+  --> src (folder with the .cpp files)
 
-## Security & System
-- **Change PIN**  
-  Update the card's security PIN.
-- **Block Card**  
-  Block a card to prevent unauthorized usage.
-- **Generate Cards / Delete Cards**  
-  Create new bank cards or delete existing ones.
+# current features
 
----
+- Core
+  - Create Account
+  - Create Profile
+  - Main Menue
+  
+# planned Features
 
-## Database
-A database layer will be integrated in future versions to store user profiles, cards, transactions, and system data persistently.
+- Core
+  - Login/ Logout, 2FA, Database
+  - Main Menu
 
----
+- Banking
+  - Create Banking Cards (Debit Card, Giro Card, Credit Card)
+  - Deposit money, withdraw money, transfer money, add and edit availability, limits
+  - Create & adjust standing orders
+  - Set & adjust overdraft limit
 
-## Future Plans
-- Full GUI implementation using **Qt**
-- Persistent database integration
-- More detailed transaction history
-- Support for additional card types (credit, prepaid, virtual)
-- Extended security and encryption features
+# planned technologies
+
+- Database
+- GUI
