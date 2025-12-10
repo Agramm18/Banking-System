@@ -21,13 +21,28 @@ class account {
 
     Birthday Bday;
     std::string AccountID;
-    bool AgeType;
     std::string AgeCardType;
+    
+    struct address {
+
+        std::string city;
+        std::string houseNumber;
+        std::string postalCode;
+
+        std::string county;
+        std::string country;
+        std::string countryCode;
+    };
+
+    address AddressData;
+
+    bool AgeType;
 
     public:
 
     //Create the user
     void setGenerallName(); //Set the name from the user
+    void setAddress(); //Set the Address for the user
     void setBirthday(); //Set the birthday from the user
     void setCardAgeType(); //Validate if its an adult or child bank card
 
