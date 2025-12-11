@@ -3,8 +3,6 @@
 This project simulates a traditional banking system combined with modern online banking features (similar to PayPal or Apple Pay).
 It was developed to practice and deepen knowledge in C++ and will later be extended with a GUI using Qt.
 
----
-
 ## Used Technologies
 
 1. **C++** as the main programming language
@@ -12,15 +10,11 @@ It was developed to practice and deepen knowledge in C++ and will later be exten
 3. **JSON** for data exchange between C++ and Python
 4. **SQLite** as the database system
 
----
-
 ## Used Libraries
 
 1. **libsodium** – password hashing and encryption
 2. **datetime / date (Python)** – date validation
 3. **pycountry** – automatic country code lookup
-
----
 
 ## Required Libraries & Tools
 
@@ -40,15 +34,15 @@ Used to install:
 
 * SQL connector for C/C++
 
----
-
 ## Database Logic
 
 ```
+
 Main Profile
- └── User Account
-      └── Card Information
-           └── Card Movements & Changes
+└── User Account
+└── Card Information
+└── Card Movements & Changes
+
 ```
 
 ---
@@ -56,44 +50,44 @@ Main Profile
 ## Core Structure
 
 ```
-System Profile
- └── Account
-      └── Card Data
-           └── Card Movement (Transactions)
-```
 
----
+System Profile
+└── Account
+└── Card Data
+└── Card Movement (Transactions)
+
+```
 
 ## Main Architecture
 
 ```
-main.cpp
- └── windowsBuild.bat (build script)
-      └── /build (compiled .exe, Python scripts, JSON files)
-           └── ApplicationController.cpp (controls the entire system)
-                └── Login / Registration
-                     └── Two-Factor Authentication
-                          └── menu.cpp (central controller for all classes and functions)
-```
 
----
+main.cpp
+└── windowsBuild.bat (build script)
+└── /build (compiled .exe, Python scripts, JSON files)
+└── ApplicationController.cpp (controls the entire system)
+└── Login / Registration
+└── Two-Factor Authentication
+└── menu.cpp (central controller for all classes and functions)
+
+```
 
 ## File Structure
 
 ```
+
 main.cpp
 windowsBuild.bat
 /build
-   ├── main.exe
-   ├── Python files
-   └── JSON files
+├── main.exe
+├── Python files
+└── JSON files
 /include
-   └── header files (.h)
+└── header files (.h)
 /src
-   └── source files (.cpp)
-```
+└── source files (.cpp)
 
----
+```
 
 ## Current Features
 
@@ -102,8 +96,6 @@ windowsBuild.bat
 * Account creation
 * Profile creation
 * Basic main menu
-
----
 
 ## Planned Features
 
@@ -122,11 +114,10 @@ windowsBuild.bat
 * Standing orders
 * Overdraft limit management
 
----
-
 ## Planned Technologies
 
 * Full database backend
 * Qt-based graphical user interface
+```
 
 ---
