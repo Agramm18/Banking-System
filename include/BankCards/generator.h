@@ -3,7 +3,17 @@
 
 #include <string>
 
-class generateBankingCard {
+using namespace std;
+
+class generationValues {
+    private:
+
+    std::string bankName = "Agramm Bank";
+    std::string cardType;
+    std::string cardStatus;
+
+    std::string bankBIC;
+
     public:
 
     //Generates your Banking Card
@@ -22,6 +32,13 @@ class generateBankingCard {
 
     void setPIN(); //Sets your PIN
     void setPUK(); //Set your PUK
+};
+
+class generateCard {
+    public:
+
+    void genCard(); //Generates the acutall Card
+
 };
 
 #endif
