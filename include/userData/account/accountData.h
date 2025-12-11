@@ -40,6 +40,11 @@ class account {
 
     public:
 
+    //Getter to collect the country code
+    const address& getCountryCode() const {
+        return AddressData;
+    }
+
     //Create the user
     void setGenerallName(); //Set the name from the user
     void setAddress(); //Set the Address for the user
