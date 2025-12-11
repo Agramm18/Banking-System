@@ -1,10 +1,7 @@
-#include <UserAccountMain/userAccountMainArchitecture.h>
+#include <userData/account/accountData.h>
+#include <BankCards/generator.h>
 
 #include <iostream>
-#include <string>
-
 #include <random>
-#include <unordered_set>
 
-
-void 
+using namespace std;
